@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for标签</title>
+</head>
+<body>
+<p>{{books|join:"/" }}</p>
+<p>{{ books|random }}</p>
+<table>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>书名</th>
+            <th>阶段</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.stage }}</td>
+        </tr>
+        {% empty %}
+            <str>没有数据</str>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    {% for key,value in person.items %}
+        <p>{{ key }}:{{ value }}</p>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

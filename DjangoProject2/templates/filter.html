@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器的使用</title>
+</head>
+<body>
+    <p>{{ greet }}<br/>
+        {{ greet|cut:" " }}<br/>
+        {{ greet|cut:',' }}<br/>
+    </p>
+    <p>
+        生日:{{ birthday }}<br/>
+        {{ birthday|date:"Y-n-d" }}<br/>
+        {{ birthday|date:"Y年m月d日" }}<br/>
+        {{ birthday|date:"Y-m-d H:i:s" }}<br/>
+        {{ birthday|date:"Y年m月d日 H时i分:s秒" }}<br/>
+    </p>
+    <p>
+        个人简介：{{ profile|default:"这个人很懒什么都不留下" }}
+    </p>
+    <div>
+        {{ html|safe }}
+    </div>
+    <div>
+        {{ html|striptags }}
+        {{ profile|truncatewords:"5" }}
+    </div>
+</body>
+</html>

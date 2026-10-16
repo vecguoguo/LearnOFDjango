@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>with标签</title>
+</head>
+<body>
+    {% with book1 = books.1 %}
+    <h1>{{ book1.name }}/{{ book1.author }}</h1>
+    {% endwith %}
+</body>
+</html>
