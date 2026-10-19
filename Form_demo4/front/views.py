@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
-from .forms import MessageBoardForm, RegisterForm
+from .forms import MessageBoardForm, RegisterForm,ArticleForm
 
 
 # Create your views here.
@@ -36,6 +36,20 @@ def register_view(request):
             telephone = form.cleaned_data.get('telephone')
             return HttpResponse(f"{telephone}")
         else:
-            print(form.errors)
+            print(form.errors.get_json_data())
             return HttpResponse('表单验证失败!')
 
+@require_http_methods(["GET","POST"])
+def article_view(request):
+    if request.method == "GET":
+        return render(request,'article.html')
+    else:
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            # 获取title和content以及create_time 然后创建article模型对象，在存储在数据库中
+            title = form.cleaned_data.get('title')
+            content = form.cleaned_data.get('content')
+            return HttpResponse(f"{title},{content}")
+        else:
+            print(form.errors)
+            return HttpResponse('验证失败')
